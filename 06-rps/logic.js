@@ -20,7 +20,7 @@ function playRound(humanChoice, computerChoice) {
         console.log(`${computerChoice} beats ${humanChoice}`);
         computerScore++;
         return;
-    } 
+    }
     if (humanIdx === (computerIdx + 1) % 3) {
         console.log("📣 The player wins this round! 🎊");
         console.log(`${humanChoice} beats ${computerChoice}`);
@@ -31,7 +31,29 @@ function playRound(humanChoice, computerChoice) {
     console.log(`Both players selected ${humanChoice}.`);
 }
 
-let humanChoice = getHumanChoice();
-let computerChoice = getComputerChoice();
+function playGame() {
+    for (let i = 0; i < 5; i++) {
+        console.log(`TURN: ${i + 1}`);
+        let humanChoice = getHumanChoice();
+        let computerChoice = getComputerChoice();
 
-playRound(humanChoice, computerChoice);
+        playRound(humanChoice, computerChoice);
+        console.log(`PLAYER: ${humanScore} | COMPUTER: ${computerScore}`);
+        console.log("");
+    }
+}
+
+function processResult() {
+    if (humanScore > computerScore) {
+        console.log("🎊🥳 The Player wins! 🎊🥳");
+        return;
+    }
+    if (computerScore > humanScore) {
+        console.log("The computer won this time! 🤖");
+        return;
+    }
+    console.log("Wow! Looks like we got a draw! 😮");
+}
+
+playGame();
+processResult();
